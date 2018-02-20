@@ -113,6 +113,26 @@ class DictionaryCodingTests: XCTestCase {
     XCTAssertEqual(encoded.allKeys.count, 1)
   }
 
+  func testDecodingWithDefaults() throws {
+    // the dictionary is missing some keys, but they can be filled in
+    // using default values
+    struct Test : Codable {
+      let name : String
+      let age : Int
+      let flag : Bool
+    }
+    
+    let dict : [String:Any] = [ "name" : "Sam" ]
+    
+    let decoder = DictionaryDecoder()
+    decoder.missingValueDecodingStrategy = .useDefault
+    
+    let decoded = try decoder.decode(Test.self, from: dict)
+    
+    XCTAssertEqual(decoded.name, "Sam")
+    XCTAssertEqual(decoded.age, 0)
+  }
+
   static var allTests = [
         ("testEncodingAsNSDictionary", testEncodingAsNSDictionary),
         ("testEncodingAsSwiftDictionary", testEncodingAsSwiftDictionary),
