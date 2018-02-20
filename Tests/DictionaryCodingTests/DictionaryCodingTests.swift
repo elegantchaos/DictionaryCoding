@@ -1,11 +1,11 @@
 import XCTest
-@testable import Dictionary
+@testable import DictionaryCoding
 
 struct Test : Codable {
   let name : String
 }
 
-class DictionaryTests: XCTestCase {
+class DictionaryCodingTests: XCTestCase {
     func testExample() throws {
       let test = Test(name: "Brad")
       let encoder = DictionaryEncoder()

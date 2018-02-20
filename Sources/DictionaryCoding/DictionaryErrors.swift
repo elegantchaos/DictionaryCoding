@@ -1,8 +1,6 @@
-import Foundation
-
 //===----------------------------------------------------------------------===//
 //
-// This source file is largely a copy of the Swift.org open source project's
+// This source file is largely a copy of code from Swift.org open source project's
 // files JSONEncoder.swift and Codeable.swift.
 //
 // Unfortunately those files do not expose the internal _JSONEncoder and
@@ -19,6 +17,8 @@ import Foundation
 // is licensed under the same terms.
 //
 //===----------------------------------------------------------------------===//
+
+import Foundation
 
 
 //===----------------------------------------------------------------------===//

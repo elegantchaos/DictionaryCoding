@@ -1,8 +1,6 @@
-import Foundation
-
 //===----------------------------------------------------------------------===//
 //
-// This source file is largely a copy of the Swift.org open source project's
+// This source file is largely a copy of code from Swift.org open source project's
 // files JSONEncoder.swift and Codeable.swift.
 //
 // Unfortunately those files do not expose the internal _JSONEncoder and
@@ -20,7 +18,9 @@ import Foundation
 //
 //===----------------------------------------------------------------------===//
 
-internal struct _DictionaryKey : CodingKey {
+import Foundation
+
+internal struct DictionaryCodingKey : CodingKey {
     public var stringValue: String
     public var intValue: Int?
 
@@ -44,6 +44,6 @@ internal struct _DictionaryKey : CodingKey {
         self.intValue = index
     }
 
-    internal static let `super` = _DictionaryKey(stringValue: "super")!
+    internal static let `super` = DictionaryCodingKey(stringValue: "super")!
 }
 

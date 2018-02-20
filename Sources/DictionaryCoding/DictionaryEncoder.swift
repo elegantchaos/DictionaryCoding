@@ -1,8 +1,6 @@
-import Foundation
-
 //===----------------------------------------------------------------------===//
 //
-// This source file is largely a copy of the Swift.org open source project's
+// This source file is largely a copy of code from Swift.org open source project's
 // files JSONEncoder.swift and Codeable.swift.
 //
 // Unfortunately those files do not expose the internal _JSONEncoder and
@@ -19,6 +17,8 @@ import Foundation
 // is licensed under the same terms.
 //
 //===----------------------------------------------------------------------===//
+
+import Foundation
 
 
 //===----------------------------------------------------------------------===//
@@ -268,7 +268,7 @@ fileprivate class _DictionaryEncoder : Encoder {
             topContainer = container
         }
 
-        let container = _DictionaryKeyedEncodingContainer<Key>(referencing: self, codingPath: self.codingPath, wrapping: topContainer)
+        let container = DictionaryCodingKeyedEncodingContainer<Key>(referencing: self, codingPath: self.codingPath, wrapping: topContainer)
         return KeyedEncodingContainer(container)
     }
 
@@ -333,7 +333,7 @@ fileprivate struct _DictionaryEncodingStorage {
 }
 
 // MARK: - Encoding Containers
-fileprivate struct _DictionaryKeyedEncodingContainer<K : CodingKey> : KeyedEncodingContainerProtocol {
+fileprivate struct DictionaryCodingKeyedEncodingContainer<K : CodingKey> : KeyedEncodingContainerProtocol {
     typealias Key = K
 
     // MARK: Properties
@@ -361,7 +361,7 @@ fileprivate struct _DictionaryKeyedEncodingContainer<K : CodingKey> : KeyedEncod
             return key
         case .convertToSnakeCase:
             let newKeyString = DictionaryEncoder.KeyEncodingStrategy._convertToSnakeCase(key.stringValue)
-            return _DictionaryKey(stringValue: newKeyString, intValue: key.intValue)
+            return DictionaryCodingKey(stringValue: newKeyString, intValue: key.intValue)
         case .custom(let converter):
             return converter(codingPath + [key])
         }
@@ -435,7 +435,7 @@ fileprivate struct _DictionaryKeyedEncodingContainer<K : CodingKey> : KeyedEncod
         self.codingPath.append(key)
         defer { self.codingPath.removeLast() }
 
-        let container = _DictionaryKeyedEncodingContainer<NestedKey>(referencing: self.encoder, codingPath: self.codingPath, wrapping: dictionary)
+        let container = DictionaryCodingKeyedEncodingContainer<NestedKey>(referencing: self.encoder, codingPath: self.codingPath, wrapping: dictionary)
         return KeyedEncodingContainer(container)
     }
 
@@ -449,7 +449,7 @@ fileprivate struct _DictionaryKeyedEncodingContainer<K : CodingKey> : KeyedEncod
     }
 
     public mutating func superEncoder() -> Encoder {
-        return _DictionaryReferencingEncoder(referencing: self.encoder, key: _DictionaryKey.super, convertedKey: _converted(_DictionaryKey.super), wrapping: self.container)
+        return _DictionaryReferencingEncoder(referencing: self.encoder, key: DictionaryCodingKey.super, convertedKey: _converted(DictionaryCodingKey.super), wrapping: self.container)
     }
 
     public mutating func superEncoder(forKey key: Key) -> Encoder {
@@ -498,37 +498,37 @@ fileprivate struct _DictionaryUnkeyedEncodingContainer : UnkeyedEncodingContaine
 
     public mutating func encode(_ value: Float)  throws {
         // Since the float may be invalid and throw, the coding path needs to contain this key.
-        self.encoder.codingPath.append(_DictionaryKey(index: self.count))
+        self.encoder.codingPath.append(DictionaryCodingKey(index: self.count))
         defer { self.encoder.codingPath.removeLast() }
         self.container.add(try self.encoder.box(value))
     }
 
     public mutating func encode(_ value: Double) throws {
         // Since the double may be invalid and throw, the coding path needs to contain this key.
-        self.encoder.codingPath.append(_DictionaryKey(index: self.count))
+        self.encoder.codingPath.append(DictionaryCodingKey(index: self.count))
         defer { self.encoder.codingPath.removeLast() }
         self.container.add(try self.encoder.box(value))
     }
 
     public mutating func encode<T : Encodable>(_ value: T) throws {
-        self.encoder.codingPath.append(_DictionaryKey(index: self.count))
+        self.encoder.codingPath.append(DictionaryCodingKey(index: self.count))
         defer { self.encoder.codingPath.removeLast() }
         self.container.add(try self.encoder.box(value))
     }
 
     public mutating func nestedContainer<NestedKey>(keyedBy keyType: NestedKey.Type) -> KeyedEncodingContainer<NestedKey> {
-        self.codingPath.append(_DictionaryKey(index: self.count))
+        self.codingPath.append(DictionaryCodingKey(index: self.count))
         defer { self.codingPath.removeLast() }
 
         let dictionary = NSMutableDictionary()
         self.container.add(dictionary)
 
-        let container = _DictionaryKeyedEncodingContainer<NestedKey>(referencing: self.encoder, codingPath: self.codingPath, wrapping: dictionary)
+        let container = DictionaryCodingKeyedEncodingContainer<NestedKey>(referencing: self.encoder, codingPath: self.codingPath, wrapping: dictionary)
         return KeyedEncodingContainer(container)
     }
 
     public mutating func nestedUnkeyedContainer() -> UnkeyedEncodingContainer {
-        self.codingPath.append(_DictionaryKey(index: self.count))
+        self.codingPath.append(DictionaryCodingKey(index: self.count))
         defer { self.codingPath.removeLast() }
 
         let array = NSMutableArray()
@@ -846,7 +846,7 @@ fileprivate class _DictionaryReferencingEncoder : _DictionaryEncoder {
         self.reference = .array(array, index)
         super.init(options: encoder.options, codingPath: encoder.codingPath)
 
-        self.codingPath.append(_DictionaryKey(index: index))
+        self.codingPath.append(DictionaryCodingKey(index: index))
     }
 
     /// Initializes `self` by referencing the given dictionary container in the given encoder.
