@@ -213,6 +213,32 @@ open class DictionaryEncoder {
     
       return topLevel as! NSDictionary
     }
+  
+  // MARK: - Encoding Values
+  /// Encodes the given top-level value and returns its Dictionary representation.
+  ///
+  /// - parameter value: The value to encode.
+  /// - returns: A new `Data` value containing the encoded Dictionary data.
+  /// - throws: `EncodingError.invalidValue` if a non-conforming floating-point value is encountered during encoding, and the encoding strategy is `.throw`.
+  /// - throws: An error if any value throws an error during encoding.
+  open func encode<T : Encodable>(_ value: T) throws -> [String:Any] {
+    let encoder = _DictionaryEncoder(options: self.options)
+    
+    guard let topLevel = try encoder.box_(value) else {
+      throw EncodingError.invalidValue(value, EncodingError.Context(codingPath: [], debugDescription: "Top-level \(T.self) did not encode any values."))
+    }
+    
+    if topLevel is NSNull {
+      throw EncodingError.invalidValue(value, EncodingError.Context(codingPath: [], debugDescription: "Top-level \(T.self) encoded as null Dictionary fragment."))
+    } else if topLevel is NSNumber {
+      throw EncodingError.invalidValue(value, EncodingError.Context(codingPath: [], debugDescription: "Top-level \(T.self) encoded as number Dictionary fragment."))
+    } else if topLevel is NSString {
+      throw EncodingError.invalidValue(value, EncodingError.Context(codingPath: [], debugDescription: "Top-level \(T.self) encoded as string Dictionary fragment."))
+    }
+    
+    return topLevel as! [String:Any]
+  }
+
 }
 
 // MARK: - _DictionaryEncoder
