@@ -115,11 +115,13 @@ class DictionaryCodingTests: XCTestCase {
 
   func testDecodingWithDefaults() throws {
     // the dictionary is missing some keys, but they can be filled in
-    // using default values
+    // using default values if we set the missingValue strategy to .useDefault
     struct Test : Codable {
       let name : String
+      let label : String
       let age : Int
       let flag : Bool
+      let value : Double
     }
     
     let dict : [String:Any] = [ "name" : "Sam" ]
@@ -130,7 +132,10 @@ class DictionaryCodingTests: XCTestCase {
     let decoded = try decoder.decode(Test.self, from: dict)
     
     XCTAssertEqual(decoded.name, "Sam")
+    XCTAssertEqual(decoded.label, "")
     XCTAssertEqual(decoded.age, 0)
+    XCTAssertEqual(decoded.flag, false)
+    XCTAssertEqual(decoded.value, 0.0)
   }
 
   static var allTests = [
@@ -141,5 +146,6 @@ class DictionaryCodingTests: XCTestCase {
         ("testFailureWithMissingKeys", testFailureWithMissingKeys),
         ("testDecodingOptionalValues", testDecodingOptionalValues),
         ("testEncodingOptionalValues", testEncodingOptionalValues),
+        ("testDecodingWithDefaults", testDecodingWithDefaults),
     ]
 }
