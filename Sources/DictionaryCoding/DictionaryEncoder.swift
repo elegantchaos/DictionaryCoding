@@ -196,7 +196,7 @@ open class DictionaryEncoder {
     /// - returns: A new `Data` value containing the encoded Dictionary data.
     /// - throws: `EncodingError.invalidValue` if a non-conforming floating-point value is encountered during encoding, and the encoding strategy is `.throw`.
     /// - throws: An error if any value throws an error during encoding.
-  open func encode<T : Encodable>(_ value: T) throws -> [String:Any] {
+  open func encode<T : Encodable>(_ value: T) throws -> NSDictionary {
         let encoder = _DictionaryEncoder(options: self.options)
 
         guard let topLevel = try encoder.box_(value) else {
@@ -211,7 +211,7 @@ open class DictionaryEncoder {
             throw EncodingError.invalidValue(value, EncodingError.Context(codingPath: [], debugDescription: "Top-level \(T.self) encoded as string Dictionary fragment."))
         }
     
-      return topLevel as! [String:Any]
+      return topLevel as! NSDictionary
     }
 }
 
