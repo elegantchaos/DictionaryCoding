@@ -67,6 +67,20 @@ class DictionaryCodingTests: XCTestCase {
     XCTAssertEqual(encoded["data"] as? String, "dGVzdA==")
   }
   
+  func testDecodingAllTheTypes() throws {
+    let encoded : [String:Any] = ["uint32": 123456, "data": "dGVzdA==", "int16": -12345, "int64": -123456789, "uint8": 123, "date": 123456.789, "uint": 123456, "int": -123456, "int8": -123, "bool": 1, "int32": -123456, "double": 12345.6789, "uint64": 123456789, "float": 123.456, "uint16": 12345, "string": "blah"]
+    
+    let decoder = DictionaryDecoder()
+    let decoded = try decoder.decode(AllTheTypes.self, from: encoded)
+
+    XCTAssertEqual(decoded.string, "blah")
+    XCTAssertEqual(decoded.int, -123456)
+    XCTAssertEqual(decoded.int8, -123)
+    XCTAssertEqual(decoded.int16, -12345)
+    XCTAssertEqual(decoded.int32, -123456)
+    XCTAssertEqual(decoded.int64, -123456789)
+  }
+  
   func testEncodingAsNSDictionary() throws {
     let test = Person(name: "Sam", age: 48, pets:[Pet(name: "Morven"), Pet(name: "Rebus")])
     let encoder = DictionaryEncoder()
