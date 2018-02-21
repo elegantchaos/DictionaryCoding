@@ -977,12 +977,14 @@ extension _DictionaryDecoder {
         guard !(value is NSNull) else { return nil }
 
         if let number = value as? NSNumber {
-            // TODO: Add a flag to coerce non-boolean numbers into Bools?
+          
             if number === kCFBooleanTrue as NSNumber {
                 return true
             } else if number === kCFBooleanFalse as NSNumber {
                 return false
-            }
+            } else {
+              return number != 0 // TODO: Add a flag to disallow non-boolean numbers?
+          }
 
         /* FIXME: If swift-corelibs-foundation doesn't change to use NSNumber, this code path will need to be included and tested:
         } else if let bool = value as? Bool {
