@@ -76,10 +76,31 @@ class DictionaryCodingTests: XCTestCase {
     var customEncoderCalled = false
     encoder.dateEncodingStrategy = .custom({ (date, encoder) in
       customEncoderCalled = true
-      try "blah".encode(to: encoder)
+      try "some custom encoding".encode(to: encoder)
       })
     let encoded7 = try encoder.encode(date) as [String:Any]
-    XCTAssertEqual(encoded7["date"] as? String, "blah")
+    XCTAssertEqual(encoded7["date"] as? String, "some custom encoding")
+    XCTAssertEqual(customEncoderCalled, true)
+  }
+
+  func testEncodingDataFormats() throws {
+    let data = JustData(data: "blah".data(using: String.Encoding.utf8)!)
+    let encoder = DictionaryEncoder()
+    encoder.dataEncodingStrategy = .base64
+    let encoded1 = try encoder.encode(data) as [String:Any]
+    XCTAssertEqual(encoded1["data"] as? String, "YmxhaA==")
+
+    encoder.dataEncodingStrategy = .deferredToData
+    let encoded2 = try encoder.encode(data) as [String:Any]
+    XCTAssertEqual(encoded2["data"] as! [Int8], [98, 108, 97, 104])
+
+    var customEncoderCalled = false
+    encoder.dataEncodingStrategy = .custom({ (date, encoder) in
+      customEncoderCalled = true
+      try "some custom encoding".encode(to: encoder)
+    })
+    let encoded3 = try encoder.encode(data) as [String:Any]
+    XCTAssertEqual(encoded3["data"] as? String, "some custom encoding")
     XCTAssertEqual(customEncoderCalled, true)
   }
   
@@ -255,6 +276,7 @@ class DictionaryCodingTests: XCTestCase {
   }
   
   static var allTests = [
+    ("testEncodingDataFormats", testEncodingDataFormats),
     ("testEncodingDateFormats", testEncodingDateFormats),
     ("testEncodingAllTheTypes", testEncodingAllTheTypes),
     ("testDecodingAllTheTypes", testDecodingAllTheTypes),
