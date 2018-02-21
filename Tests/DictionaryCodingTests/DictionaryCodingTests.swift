@@ -24,6 +24,9 @@ class DictionaryCodingTests: XCTestCase {
       let encoded = try encoder.encode(test) as NSDictionary
       XCTAssertEqual(encoded["name"] as? String, "Sam")
       XCTAssertEqual(encoded["age"] as? Int, 48)
+      let pets = encoded["pets"] as! [NSDictionary]
+      XCTAssertEqual(pets[0]["name"] as? String, "Morven")
+      XCTAssertEqual(pets[1]["name"] as? String, "Rebus")
     }
 
   func testEncodingAsSwiftDictionary() throws {
@@ -32,6 +35,9 @@ class DictionaryCodingTests: XCTestCase {
     let encoded = try encoder.encode(test) as [String:Any]
     XCTAssertEqual(encoded["name"] as? String, "Sam")
     XCTAssertEqual(encoded["age"] as? Int, 48)
+    let pets = encoded["pets"] as! [NSDictionary]
+    XCTAssertEqual(pets[0]["name"] as? String, "Morven")
+    XCTAssertEqual(pets[1]["name"] as? String, "Rebus")
   }
 
   func testDecodingNSDictionary() throws {
