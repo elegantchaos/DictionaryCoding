@@ -197,6 +197,27 @@ class DictionaryDecodingTests: XCTestCase {
         XCTAssertThrowsError(try decoder.decode(Test.self, from: ["value" : URL(fileURLWithPath: "/test")]))
     }
 
+    func testDecodingURL() throws {
+        // if we're expecting a URL, we should be able to cope with getting a string, URL or NSURL
+        // if we're expecting a UUID, but are given a String or a CFUUID, we should be able to cope
+        struct Test : Decodable {
+            let value : URL
+        }
+        
+        let decoder = DictionaryDecoder()
+        
+        let url = URL(string: "http://elegantchaos.com")!
+        let decoded1 = try decoder.decode(Test.self, from: ["value" : url])
+        XCTAssertEqual(decoded1.value, url)
+
+        let decoded2 = try decoder.decode(Test.self, from: ["value" : url.absoluteString])
+        XCTAssertEqual(decoded2.value, url)
+
+        let decoded3 = try decoder.decode(Test.self, from: ["value" : NSURL(string: url.absoluteString)!])
+        XCTAssertEqual(decoded3.value, url)
+    }
+
+    
     static var allTests = [
         ("testDecodingAllTheTypes", testDecodingAllTheTypes),
         ("testDecodingNSDictionary", testDecodingNSDictionary),
@@ -204,5 +225,8 @@ class DictionaryDecodingTests: XCTestCase {
         ("testFailureWithMissingKeys", testFailureWithMissingKeys),
         ("testDecodingOptionalValues", testDecodingOptionalValues),
         ("testDecodingWithDefaults", testDecodingWithDefaults),
+        ("testDecodingStringFromURL", testDecodingStringFromURL),
+        ("testDecodingStringFromUUID", testDecodingStringFromUUID),
+        ("testDecodingUUID", testDecodingUUID),
         ]
 }
