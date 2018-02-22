@@ -1227,6 +1227,9 @@ extension _DictionaryDecoder {
     fileprivate func unbox(_ value: Any, as type: String.Type) throws -> String? {
         guard !(value is NSNull) else { return nil }
 
+        if let url = value as? URL {
+            return url.absoluteString
+        }
         guard let string = value as? String else {
             throw DecodingError._typeMismatch(at: self.codingPath, expectation: type, reality: value)
         }
