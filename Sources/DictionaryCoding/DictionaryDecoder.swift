@@ -75,10 +75,11 @@ open class DictionaryDecoder {
         /// Throw upon encountering missing values.
         case `throw`
         
+        /// Attempt to use a default value when encountering missing values for standard types.
         case useStandardDefault
         
         /// Attempt to use a default value when encountering missing values.
-        /// This means "" for strings, false for bools, 0 for numbers.
+        /// The default value is read from the associated dictionary, keyed by the name of the type.
         case useDefault(defaults : [String:Any])
     }
     
