@@ -278,32 +278,60 @@ class DictionaryCodingTests: XCTestCase {
     func testDecodingStringFromURL() throws {
         // if we're expecting a string, but are given a URL, we should be able to cope
         struct Test : Decodable {
-            let string : String
+            let value : String
         }
         
         let decoder = DictionaryDecoder()
 
-        let encoded1 : [String:Any] = ["string" : URL(fileURLWithPath: "/path")]
+        let encoded1 : [String:Any] = ["value" : URL(fileURLWithPath: "/path")]
         let decoded1 = try decoder.decode(Test.self, from: encoded1)
-        XCTAssertEqual(decoded1.string, "file:///path")
+        XCTAssertEqual(decoded1.value, "file:///path")
 
-        let encoded2 : [String:Any] = ["string" : NSURL(fileURLWithPath: "/path")]
+        let encoded2 : [String:Any] = ["value" : NSURL(fileURLWithPath: "/path")]
         let decoded2 = try decoder.decode(Test.self, from: encoded2)
-        XCTAssertEqual(decoded2.string, "file:///path")
+        XCTAssertEqual(decoded2.value, "file:///path")
     }
 
     func testDecodingStringFromUUID() throws {
         // if we're expecting a string, but are given a UUID, we should be able to cope
         struct Test : Decodable {
-            let string : String
+            let value : String
         }
 
         let decoder = DictionaryDecoder()
 
         let uuid = UUID()
-        let encoded : [String:Any] = ["string" : uuid]
+        let encoded : [String:Any] = ["value" : uuid]
         let decoded = try decoder.decode(Test.self, from: encoded)
-        XCTAssertEqual(decoded.string, uuid.uuidString)
+        XCTAssertEqual(decoded.value, uuid.uuidString)
+    }
+
+    func testDecodingUUID() throws {
+        // if we're expecting a UUID, but are given a String or a CFUUID, we should be able to cope
+        struct Test : Decodable {
+            let value : UUID
+        }
+        
+        let decoder = DictionaryDecoder()
+        
+        let uuid = UUID()
+        let encoded1 : [String:Any] = ["value" : uuid]
+        let decoded1 = try decoder.decode(Test.self, from: encoded1)
+        XCTAssertEqual(decoded1.value, uuid)
+
+        let encoded2 : [String:Any] = ["value" : uuid.uuidString]
+        let decoded2 = try decoder.decode(Test.self, from: encoded2)
+        XCTAssertEqual(decoded2.value, uuid)
+
+        let encoded3 : [String:Any] = ["value" : CFUUIDCreateFromString(nil, uuid.uuidString as CFString)]
+        let decoded3 = try decoder.decode(Test.self, from: encoded3)
+        XCTAssertEqual(decoded3.value, uuid)
+
+        // test for crashes when given other slightly random types...
+        XCTAssertThrowsError(try decoder.decode(Test.self, from: ["value" : 123]))
+        XCTAssertThrowsError(try decoder.decode(Test.self, from: ["value" : 123.456]))
+        XCTAssertThrowsError(try decoder.decode(Test.self, from: ["value" : true]))
+        XCTAssertThrowsError(try decoder.decode(Test.self, from: ["value" : URL(fileURLWithPath: "/test")]))
     }
 
     static var allTests = [

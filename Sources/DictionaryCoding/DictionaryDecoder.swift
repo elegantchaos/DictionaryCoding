@@ -1242,6 +1242,26 @@ extension _DictionaryDecoder {
         return string
     }
 
+    fileprivate func unbox(_ value: Any, as type: UUID.Type) throws -> UUID? {
+        guard !(value is NSNull) else { return nil }
+
+        if let uuid = value as? UUID {
+            return uuid
+        }
+
+        if let string = value as? String {
+            return UUID(uuidString: string)
+        }
+        
+        let cfType = CFGetTypeID(value as CFTypeRef)  // NB this could be dangerous - we're assuming that it's ok to call CFGetTypeID with the value, which may not be true
+        if cfType == CFUUIDGetTypeID() {
+            let string = CFUUIDCreateString(kCFAllocatorDefault, value as! CFUUID) as String
+            return UUID(uuidString: string)
+        }
+
+        throw DecodingError._typeMismatch(at: self.codingPath, expectation: type, reality: value)
+    }
+
     fileprivate func unbox(_ value: Any, as type: Date.Type) throws -> Date? {
         guard !(value is NSNull) else { return nil }
 
@@ -1330,6 +1350,8 @@ extension _DictionaryDecoder {
             return try self.unbox(value, as: Date.self) as? T
         } else if type == Data.self || type == NSData.self {
             return try self.unbox(value, as: Data.self) as? T
+        } else if type == UUID.self || type == CFUUID.self {
+            return try self.unbox(value, as: UUID.self) as? T
         } else if type == URL.self || type == NSURL.self {
             guard let urlString = try self.unbox(value, as: String.self) else {
                 return nil
