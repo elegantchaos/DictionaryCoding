@@ -422,15 +422,13 @@ fileprivate struct DictionaryCodingKeyedDecodingContainer<K : CodingKey> : Keyed
         return entry is NSNull
     }
     
-    internal func decodeInternal<T : Decodable>(_ type: T.Type, forKey key: Key) throws -> T {
+    internal func decode<T : Decodable>(_ type: T.Type, forKey key: Key) throws -> T {
         guard let entry = self.container[key.stringValue] else {
             switch (decoder.options.missingValueDecodingStrategy) {
             case let .useDefault(defaults):
                 let defaultKey = "\(type)"
                 if let def = defaults[defaultKey] as? T {
                     return def
-                } else {
-                    print("no default for \(defaultKey)")
                 }
                 default:
                     break
@@ -446,90 +444,6 @@ fileprivate struct DictionaryCodingKeyedDecodingContainer<K : CodingKey> : Keyed
             throw nullFoundError(type: type)
         }
         
-        return value
-    }
-    
-    public func decode(_ type: Bool.Type, forKey key: Key) throws -> Bool {
-        return try decodeInternal(type, forKey: key)
-    }
-    
-    public func decode(_ type: Int.Type, forKey key: Key) throws -> Int {
-        return try decodeInternal(type, forKey: key)
-    }
-    
-    public func decode(_ type: Int8.Type, forKey key: Key) throws -> Int8 {
-        return try decodeInternal(type, forKey: key)
-    }
-    
-    public func decode(_ type: Int16.Type, forKey key: Key) throws -> Int16 {
-        return try decodeInternal(type, forKey: key)
-    }
-    
-    public func decode(_ type: Int32.Type, forKey key: Key) throws -> Int32 {
-        return try decodeInternal(type, forKey: key)
-    }
-    
-    public func decode(_ type: Int64.Type, forKey key: Key) throws -> Int64 {
-        return try decodeInternal(type, forKey: key)
-    }
-    
-    public func decode(_ type: UInt.Type, forKey key: Key) throws -> UInt {
-        return try decodeInternal(type, forKey: key)
-    }
-    
-    public func decode(_ type: UInt8.Type, forKey key: Key) throws -> UInt8 {
-        return try decodeInternal(type, forKey: key)
-    }
-    
-    public func decode(_ type: UInt16.Type, forKey key: Key) throws -> UInt16 {
-        return try decodeInternal(type, forKey: key)
-    }
-    
-    public func decode(_ type: UInt32.Type, forKey key: Key) throws -> UInt32 {
-        return try decodeInternal(type, forKey: key)
-    }
-    
-    public func decode(_ type: UInt64.Type, forKey key: Key) throws -> UInt64 {
-        return try decodeInternal(type, forKey: key)
-    }
-    
-    public func decode(_ type: Float.Type, forKey key: Key) throws -> Float {
-        return try decodeInternal(type, forKey: key)
-    }
-    
-    public func decode(_ type: Double.Type, forKey key: Key) throws -> Double {
-        return try decodeInternal(type, forKey: key)
-    }
-    
-    public func decode(_ type: String.Type, forKey key: Key) throws -> String {
-        return try decodeInternal(type, forKey: key)
-    }
-    
-    public func decode<T : Decodable>(_ type: T.Type, forKey key: Key) throws -> T {
-//        return try decodeInternal(type, forKey: key)
-        guard let entry = self.container[key.stringValue] else {
-            switch (decoder.options.missingValueDecodingStrategy) {
-            case let .useDefault(defaults):
-                print("looking for default \(type)")
-                if let def = defaults["\(type)"] as? T {
-                    return def
-                } else {
-                    break
-                }
-            default:
-                break
-            }
-
-            throw notFoundError(key: key)
-        }
-
-        self.decoder.codingPath.append(key)
-        defer { self.decoder.codingPath.removeLast() }
-
-        guard let value = try self.decoder.unbox(entry, as: type) else {
-            throw nullFoundError(type: type)
-        }
-
         return value
     }
     
