@@ -168,6 +168,20 @@ class DictionaryEncodingTests: XCTestCase {
         XCTAssertEqual(encoded.allKeys.count, 1)
     }
 
+    func testEncodingURL() throws {
+        struct Test : Encodable {
+            let value : URL
+        }
+        
+        let string = "http://elegantchaos.com"
+        let test = Test(value: URL(string: string)!)
+        let encoder = DictionaryEncoder()
+        let encoded = try encoder.encode(test) as [String:Any]
+
+        // currently URLs are encoded as strings
+        XCTAssertEqual(encoded["value"] as? String, string)
+    }
+
     static var allTests = [
         ("testEncodingDataFormats", testEncodingDataFormats),
         ("testEncodingDateFormats", testEncodingDateFormats),
@@ -175,5 +189,6 @@ class DictionaryEncodingTests: XCTestCase {
         ("testEncodingAsNSDictionary", testEncodingAsNSDictionary),
         ("testEncodingAsSwiftDictionary", testEncodingAsSwiftDictionary),
         ("testEncodingOptionalValues", testEncodingOptionalValues),
+        ("testEncodingURL", testEncodingURL),
         ]
 }
