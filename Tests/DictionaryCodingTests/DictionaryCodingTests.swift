@@ -281,17 +281,31 @@ class DictionaryCodingTests: XCTestCase {
             let string : String
         }
         
-        let encoded : [String:Any] = ["string" : URL(fileURLWithPath: "/path")]
         let decoder = DictionaryDecoder()
-        let decoded = try decoder.decode(Test.self, from: encoded)
-        XCTAssertEqual(decoded.string, "file:///path")
+
+        let encoded1 : [String:Any] = ["string" : URL(fileURLWithPath: "/path")]
+        let decoded1 = try decoder.decode(Test.self, from: encoded1)
+        XCTAssertEqual(decoded1.string, "file:///path")
 
         let encoded2 : [String:Any] = ["string" : NSURL(fileURLWithPath: "/path")]
         let decoded2 = try decoder.decode(Test.self, from: encoded2)
         XCTAssertEqual(decoded2.string, "file:///path")
-
     }
-    
+
+    func testDecodingStringFromUUID() throws {
+        // if we're expecting a string, but are given a UUID, we should be able to cope
+        struct Test : Decodable {
+            let string : String
+        }
+
+        let decoder = DictionaryDecoder()
+
+        let uuid = UUID()
+        let encoded : [String:Any] = ["string" : uuid]
+        let decoded = try decoder.decode(Test.self, from: encoded)
+        XCTAssertEqual(decoded.string, uuid.uuidString)
+    }
+
     static var allTests = [
         ("testEncodingDataFormats", testEncodingDataFormats),
         ("testEncodingDateFormats", testEncodingDateFormats),

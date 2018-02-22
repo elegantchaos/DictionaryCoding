@@ -1230,6 +1230,11 @@ extension _DictionaryDecoder {
         if let url = value as? URL {
             return url.absoluteString
         }
+
+        if let uuid = value as? UUID {
+            return uuid.uuidString
+        }
+        
         guard let string = value as? String else {
             throw DecodingError._typeMismatch(at: self.codingPath, expectation: type, reality: value)
         }
