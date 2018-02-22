@@ -363,6 +363,14 @@ fileprivate struct DictionaryCodingKeyedDecodingContainer<K : CodingKey> : Keyed
         return self.container[key.stringValue] != nil
     }
 
+    internal func notFoundError(key: Key) -> DecodingError {
+        return DecodingError.keyNotFound(key, DecodingError.Context(codingPath: self.decoder.codingPath, debugDescription: "No value associated with key \(_errorDescription(of: key))."))
+    }
+    
+    internal func nullFoundError<T>(type: T.Type) -> DecodingError {
+        return DecodingError.valueNotFound(type, DecodingError.Context(codingPath: self.decoder.codingPath, debugDescription: "Expected \(type) value but found null instead."))
+    }
+    
     private func _errorDescription(of key: CodingKey) -> String {
         switch decoder.options.keyDecodingStrategy {
         case .convertFromSnakeCase:
@@ -382,7 +390,7 @@ fileprivate struct DictionaryCodingKeyedDecodingContainer<K : CodingKey> : Keyed
 
     public func decodeNil(forKey key: Key) throws -> Bool {
         guard let entry = self.container[key.stringValue] else {
-            throw DecodingError.keyNotFound(key, DecodingError.Context(codingPath: self.decoder.codingPath, debugDescription: "No value associated with key \(_errorDescription(of: key))."))
+            throw notFoundError(key: key)
         }
 
         return entry is NSNull
@@ -394,14 +402,14 @@ fileprivate struct DictionaryCodingKeyedDecodingContainer<K : CodingKey> : Keyed
         return defaultValue
       }
 
-      throw DecodingError.keyNotFound(key, DecodingError.Context(codingPath: self.decoder.codingPath, debugDescription: "No value associated with key \(_errorDescription(of: key))."))
+      throw notFoundError(key: key)
     }
 
     self.decoder.codingPath.append(key)
     defer { self.decoder.codingPath.removeLast() }
 
     guard let value = try self.decoder.unbox(entry, as: type) else {
-      throw DecodingError.valueNotFound(type, DecodingError.Context(codingPath: self.decoder.codingPath, debugDescription: "Expected \(type) value but found null instead."))
+        throw nullFoundError(type: type)
     }
 
     return value
@@ -465,14 +473,14 @@ fileprivate struct DictionaryCodingKeyedDecodingContainer<K : CodingKey> : Keyed
 
     public func decode<T : Decodable>(_ type: T.Type, forKey key: Key) throws -> T {
         guard let entry = self.container[key.stringValue] else {
-            throw DecodingError.keyNotFound(key, DecodingError.Context(codingPath: self.decoder.codingPath, debugDescription: "No value associated with key \(_errorDescription(of: key))."))
+            throw notFoundError(key: key)
         }
 
         self.decoder.codingPath.append(key)
         defer { self.decoder.codingPath.removeLast() }
 
         guard let value = try self.decoder.unbox(entry, as: type) else {
-            throw DecodingError.valueNotFound(type, DecodingError.Context(codingPath: self.decoder.codingPath, debugDescription: "Expected \(type) value but found null instead."))
+            throw nullFoundError(type: type)
         }
 
         return value
