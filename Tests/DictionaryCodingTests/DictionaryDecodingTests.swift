@@ -228,5 +228,6 @@ class DictionaryDecodingTests: XCTestCase {
         ("testDecodingStringFromURL", testDecodingStringFromURL),
         ("testDecodingStringFromUUID", testDecodingStringFromUUID),
         ("testDecodingUUID", testDecodingUUID),
+        ("testDecodingURL", testDecodingURL),
         ]
 }
