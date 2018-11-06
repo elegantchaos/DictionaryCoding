@@ -383,7 +383,11 @@ fileprivate struct DictionaryCodingKeyedDecodingContainer<K : CodingKey> : Keyed
     
     // MARK: - KeyedDecodingContainerProtocol Methods
     public var allKeys: [Key] {
+        #if swift(>=4.1)
+        return self.container.keys.compactMap { Key(stringValue: $0) }
+        #else
         return self.container.keys.flatMap { Key(stringValue: $0) }
+        #endif
     }
     
     public func contains(_ key: Key) -> Bool {
