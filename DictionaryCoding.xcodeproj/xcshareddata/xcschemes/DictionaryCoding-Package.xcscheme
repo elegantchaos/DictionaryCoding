@@ -19,15 +19,15 @@
     shouldUseLaunchSchemeArgsEnv = "YES"
     codeCoverageEnabled = "NO">
     <Testables>
-    <TestableReference
-      skipped = "NO">
-      <BuildableReference
-        BuildableIdentifier = "primary"
-        BuildableName = "'$(TARGET_NAME)'"
-        BlueprintName = "DictionaryCodingTests"
-        ReferencedContainer = "container:DictionaryCoding.xcodeproj">
-      </BuildableReference>
-    </TestableReference>
+        <TestableReference
+          skipped = "NO">
+          <BuildableReference
+            BuildableIdentifier = "primary"
+            BuildableName = "'$(TARGET_NAME)'"
+            BlueprintName = "DictionaryCodingTests"
+            ReferencedContainer = "container:DictionaryCoding.xcodeproj">
+          </BuildableReference>
+        </TestableReference>
     </Testables>
   </TestAction>
 </Scheme>
