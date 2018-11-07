@@ -16,6 +16,6 @@ At the moment this module is best built using the Swift Package Manager with `sw
 
 The unit tests can be run with `swift test -Xswiftc -target -Xswiftc x86_64-apple-macosx10.12`.
 
-An Xcode project can be generated with `swift package generate-xcodeproj`.
+An Xcode project can be generated with `swift package generate-xcodeproj --xcconfig-overrides Settings.xcconfig`.
 
 Please file issues (or even better, pull requests) for support for other build systems. 
