@@ -1229,7 +1229,8 @@ extension _DictionaryDecoder {
         
         let cfType = CFGetTypeID(value as CFTypeRef)  // NB this could be dangerous - we're assuming that it's ok to call CFGetTypeID with the value, which may not be true
         if cfType == CFUUIDGetTypeID() {
-            let string = CFUUIDCreateString(kCFAllocatorDefault, value as! CFUUID) as String
+            let cfValue = value as! CFUUID
+            let string = CFUUIDCreateString(kCFAllocatorDefault, cfValue) as String
             return UUID(uuidString: string)
         }
         
