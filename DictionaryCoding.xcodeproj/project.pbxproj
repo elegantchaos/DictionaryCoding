@@ -1,496 +1,632 @@
 // !$*UTF8*$!
 {
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 46;
-	objects = {
-
-/* Begin PBXAggregateTarget section */
-		"DictionaryCoding::DictionaryCodingPackageTests::ProductTarget" /* DictionaryCodingPackageTests */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = OBJ_40 /* Build configuration list for PBXAggregateTarget "DictionaryCodingPackageTests" */;
-			buildPhases = (
-			);
-			dependencies = (
-				OBJ_43 /* PBXTargetDependency */,
-			);
-			name = DictionaryCodingPackageTests;
-			productName = DictionaryCodingPackageTests;
-		};
-/* End PBXAggregateTarget section */
-
-/* Begin PBXBuildFile section */
-		OBJ_28 /* DictionaryCodingKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* DictionaryCodingKey.swift */; };
-		OBJ_29 /* DictionaryDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* DictionaryDecoder.swift */; };
-		OBJ_30 /* DictionaryEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* DictionaryEncoder.swift */; };
-		OBJ_31 /* DictionaryErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* DictionaryErrors.swift */; };
-		OBJ_38 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
-		OBJ_49 /* DictionaryDecodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* DictionaryDecodingTests.swift */; };
-		OBJ_50 /* DictionaryEncodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* DictionaryEncodingTests.swift */; };
-		OBJ_52 /* DictionaryCoding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "DictionaryCoding::DictionaryCoding::Product" /* DictionaryCoding.framework */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		22FCFC4121933F6100E20B3F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "DictionaryCoding::DictionaryCoding";
-			remoteInfo = DictionaryCoding;
-		};
-		22FCFC4221933F6200E20B3F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "DictionaryCoding::DictionaryCodingTests";
-			remoteInfo = DictionaryCodingTests;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXFileReference section */
-		"DictionaryCoding::DictionaryCoding::Product" /* DictionaryCoding.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DictionaryCoding.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"DictionaryCoding::DictionaryCodingTests::Product" /* DictionaryCodingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = DictionaryCodingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		OBJ_11 /* DictionaryCodingKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryCodingKey.swift; sourceTree = "<group>"; };
-		OBJ_12 /* DictionaryDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryDecoder.swift; sourceTree = "<group>"; };
-		OBJ_13 /* DictionaryEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryEncoder.swift; sourceTree = "<group>"; };
-		OBJ_14 /* DictionaryErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryErrors.swift; sourceTree = "<group>"; };
-		OBJ_17 /* DictionaryDecodingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryDecodingTests.swift; sourceTree = "<group>"; };
-		OBJ_18 /* DictionaryEncodingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryEncodingTests.swift; sourceTree = "<group>"; };
-		OBJ_19 /* DictionaryCoding.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = DictionaryCoding.xcworkspace; sourceTree = SOURCE_ROOT; };
-		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		OBJ_8 /* DictionaryCoding.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = DictionaryCoding.xcconfig; sourceTree = "<group>"; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		OBJ_32 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_51 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_52 /* DictionaryCoding.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		OBJ_10 /* DictionaryCoding */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_11 /* DictionaryCodingKey.swift */,
-				OBJ_12 /* DictionaryDecoder.swift */,
-				OBJ_13 /* DictionaryEncoder.swift */,
-				OBJ_14 /* DictionaryErrors.swift */,
-			);
-			name = DictionaryCoding;
-			path = Sources/DictionaryCoding;
-			sourceTree = SOURCE_ROOT;
-		};
-		OBJ_15 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_16 /* DictionaryCodingTests */,
-			);
-			name = Tests;
-			sourceTree = SOURCE_ROOT;
-		};
-		OBJ_16 /* DictionaryCodingTests */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_17 /* DictionaryDecodingTests.swift */,
-				OBJ_18 /* DictionaryEncodingTests.swift */,
-			);
-			name = DictionaryCodingTests;
-			path = Tests/DictionaryCodingTests;
-			sourceTree = SOURCE_ROOT;
-		};
-		OBJ_20 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				"DictionaryCoding::DictionaryCodingTests::Product" /* DictionaryCodingTests.xctest */,
-				"DictionaryCoding::DictionaryCoding::Product" /* DictionaryCoding.framework */,
-			);
-			name = Products;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		OBJ_5 /*  */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_6 /* Package.swift */,
-				OBJ_7 /* Configs */,
-				OBJ_9 /* Sources */,
-				OBJ_15 /* Tests */,
-				OBJ_19 /* DictionaryCoding.xcworkspace */,
-				OBJ_20 /* Products */,
-			);
-			name = "";
-			sourceTree = "<group>";
-		};
-		OBJ_7 /* Configs */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_8 /* DictionaryCoding.xcconfig */,
-			);
-			name = Configs;
-			sourceTree = "<group>";
-		};
-		OBJ_9 /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_10 /* DictionaryCoding */,
-			);
-			name = Sources;
-			sourceTree = SOURCE_ROOT;
-		};
-/* End PBXGroup section */
-
-/* Begin PBXNativeTarget section */
-		"DictionaryCoding::DictionaryCoding" /* DictionaryCoding */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_24 /* Build configuration list for PBXNativeTarget "DictionaryCoding" */;
-			buildPhases = (
-				OBJ_27 /* Sources */,
-				OBJ_32 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = DictionaryCoding;
-			productName = DictionaryCoding;
-			productReference = "DictionaryCoding::DictionaryCoding::Product" /* DictionaryCoding.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		"DictionaryCoding::DictionaryCodingTests" /* DictionaryCodingTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_45 /* Build configuration list for PBXNativeTarget "DictionaryCodingTests" */;
-			buildPhases = (
-				OBJ_48 /* Sources */,
-				OBJ_51 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				OBJ_53 /* PBXTargetDependency */,
-			);
-			name = DictionaryCodingTests;
-			productName = DictionaryCodingTests;
-			productReference = "DictionaryCoding::DictionaryCodingTests::Product" /* DictionaryCodingTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		"DictionaryCoding::SwiftPMPackageDescription" /* DictionaryCodingPackageDescription */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_34 /* Build configuration list for PBXNativeTarget "DictionaryCodingPackageDescription" */;
-			buildPhases = (
-				OBJ_37 /* Sources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = DictionaryCodingPackageDescription;
-			productName = DictionaryCodingPackageDescription;
-			productType = "com.apple.product-type.framework";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		OBJ_1 /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastUpgradeCheck = 9999;
-			};
-			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "DictionaryCoding" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-			);
-			mainGroup = OBJ_5 /*  */;
-			productRefGroup = OBJ_20 /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				"DictionaryCoding::DictionaryCoding" /* DictionaryCoding */,
-				"DictionaryCoding::SwiftPMPackageDescription" /* DictionaryCodingPackageDescription */,
-				"DictionaryCoding::DictionaryCodingPackageTests::ProductTarget" /* DictionaryCodingPackageTests */,
-				"DictionaryCoding::DictionaryCodingTests" /* DictionaryCodingTests */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXSourcesBuildPhase section */
-		OBJ_27 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_28 /* DictionaryCodingKey.swift in Sources */,
-				OBJ_29 /* DictionaryDecoder.swift in Sources */,
-				OBJ_30 /* DictionaryEncoder.swift in Sources */,
-				OBJ_31 /* DictionaryErrors.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_37 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_38 /* Package.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_48 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_49 /* DictionaryDecodingTests.swift in Sources */,
-				OBJ_50 /* DictionaryEncodingTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		OBJ_43 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "DictionaryCoding::DictionaryCodingTests" /* DictionaryCodingTests */;
-			targetProxy = 22FCFC4221933F6200E20B3F /* PBXContainerItemProxy */;
-		};
-		OBJ_53 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "DictionaryCoding::DictionaryCoding" /* DictionaryCoding */;
-			targetProxy = 22FCFC4121933F6100E20B3F /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin XCBuildConfiguration section */
-		OBJ_25 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = OBJ_8 /* DictionaryCoding.xcconfig */;
-			buildSettings = {
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = DictionaryCoding.xcodeproj/DictionaryCoding_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = DictionaryCoding;
-				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_VERSION = 4.0;
-				TARGET_NAME = DictionaryCoding;
-			};
-			name = Debug;
-		};
-		OBJ_26 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = OBJ_8 /* DictionaryCoding.xcconfig */;
-			buildSettings = {
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = DictionaryCoding.xcodeproj/DictionaryCoding_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = DictionaryCoding;
-				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_VERSION = 4.0;
-				TARGET_NAME = DictionaryCoding;
-			};
-			name = Release;
-		};
-		OBJ_3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_NS_ASSERTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_SWIFT_FLAGS = "-DXcode";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "SWIFT_PACKAGE DEBUG";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				USE_HEADERMAP = NO;
-			};
-			name = Debug;
-		};
-		OBJ_35 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				LD = /usr/bin/true;
-				OTHER_SWIFT_FLAGS = "-swift-version 4 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode10.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
-				SWIFT_VERSION = 4.0;
-			};
-			name = Debug;
-		};
-		OBJ_36 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				LD = /usr/bin/true;
-				OTHER_SWIFT_FLAGS = "-swift-version 4 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode10.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
-				SWIFT_VERSION = 4.0;
-			};
-			name = Release;
-		};
-		OBJ_4 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_OPTIMIZATION_LEVEL = s;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				OTHER_SWIFT_FLAGS = "-DXcode";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = SWIFT_PACKAGE;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				USE_HEADERMAP = NO;
-			};
-			name = Release;
-		};
-		OBJ_41 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Debug;
-		};
-		OBJ_42 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Release;
-		};
-		OBJ_46 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = OBJ_8 /* DictionaryCoding.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = DictionaryCoding.xcodeproj/DictionaryCodingTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_VERSION = 4.0;
-				TARGET_NAME = DictionaryCodingTests;
-			};
-			name = Debug;
-		};
-		OBJ_47 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = OBJ_8 /* DictionaryCoding.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = DictionaryCoding.xcodeproj/DictionaryCodingTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_VERSION = 4.0;
-				TARGET_NAME = DictionaryCodingTests;
-			};
-			name = Release;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		OBJ_2 /* Build configuration list for PBXProject "DictionaryCoding" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_3 /* Debug */,
-				OBJ_4 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		OBJ_24 /* Build configuration list for PBXNativeTarget "DictionaryCoding" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_25 /* Debug */,
-				OBJ_26 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		OBJ_34 /* Build configuration list for PBXNativeTarget "DictionaryCodingPackageDescription" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_35 /* Debug */,
-				OBJ_36 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		OBJ_40 /* Build configuration list for PBXAggregateTarget "DictionaryCodingPackageTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_41 /* Debug */,
-				OBJ_42 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		OBJ_45 /* Build configuration list for PBXNativeTarget "DictionaryCodingTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_46 /* Debug */,
-				OBJ_47 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-/* End XCConfigurationList section */
-	};
-	rootObject = OBJ_1 /* Project object */;
+   archiveVersion = "1";
+   objectVersion = "46";
+   objects = {
+      "DictionaryCoding::DictionaryCoding" = {
+         isa = "PBXNativeTarget";
+         buildConfigurationList = "OBJ_30";
+         buildPhases = (
+            "OBJ_33",
+            "OBJ_38"
+         );
+         dependencies = (
+         );
+         name = "DictionaryCoding";
+         productName = "DictionaryCoding";
+         productReference = "DictionaryCoding::DictionaryCoding::Product";
+         productType = "com.apple.product-type.framework";
+      };
+      "DictionaryCoding::DictionaryCoding::Product" = {
+         isa = "PBXFileReference";
+         path = "DictionaryCoding.framework";
+         sourceTree = "BUILT_PRODUCTS_DIR";
+      };
+      "DictionaryCoding::DictionaryCodingPackageTests::ProductTarget" = {
+         isa = "PBXAggregateTarget";
+         buildConfigurationList = "OBJ_46";
+         buildPhases = (
+         );
+         dependencies = (
+            "OBJ_49"
+         );
+         name = "DictionaryCodingPackageTests";
+         productName = "DictionaryCodingPackageTests";
+      };
+      "DictionaryCoding::DictionaryCodingTests" = {
+         isa = "PBXNativeTarget";
+         buildConfigurationList = "OBJ_51";
+         buildPhases = (
+            "OBJ_54",
+            "OBJ_57"
+         );
+         dependencies = (
+            "OBJ_59"
+         );
+         name = "DictionaryCodingTests";
+         productName = "DictionaryCodingTests";
+         productReference = "DictionaryCoding::DictionaryCodingTests::Product";
+         productType = "com.apple.product-type.bundle.unit-test";
+      };
+      "DictionaryCoding::DictionaryCodingTests::Product" = {
+         isa = "PBXFileReference";
+         path = "DictionaryCodingTests.xctest";
+         sourceTree = "BUILT_PRODUCTS_DIR";
+      };
+      "DictionaryCoding::SwiftPMPackageDescription" = {
+         isa = "PBXNativeTarget";
+         buildConfigurationList = "OBJ_40";
+         buildPhases = (
+            "OBJ_43"
+         );
+         dependencies = (
+         );
+         name = "DictionaryCodingPackageDescription";
+         productName = "DictionaryCodingPackageDescription";
+         productType = "com.apple.product-type.framework";
+      };
+      "OBJ_1" = {
+         isa = "PBXProject";
+         attributes = {
+            LastSwiftMigration = "9999";
+            LastUpgradeCheck = "9999";
+         };
+         buildConfigurationList = "OBJ_2";
+         compatibilityVersion = "Xcode 3.2";
+         developmentRegion = "English";
+         hasScannedForEncodings = "0";
+         knownRegions = (
+            "en"
+         );
+         mainGroup = "OBJ_5";
+         productRefGroup = "OBJ_19";
+         projectDirPath = ".";
+         targets = (
+            "DictionaryCoding::DictionaryCoding",
+            "DictionaryCoding::SwiftPMPackageDescription",
+            "DictionaryCoding::DictionaryCodingPackageTests::ProductTarget",
+            "DictionaryCoding::DictionaryCodingTests"
+         );
+      };
+      "OBJ_10" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_11",
+            "OBJ_12",
+            "OBJ_13",
+            "OBJ_14"
+         );
+         name = "DictionaryCoding";
+         path = "Sources/DictionaryCoding";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_11" = {
+         isa = "PBXFileReference";
+         path = "DictionaryCodingKey.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_12" = {
+         isa = "PBXFileReference";
+         path = "DictionaryDecoder.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_13" = {
+         isa = "PBXFileReference";
+         path = "DictionaryEncoder.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_14" = {
+         isa = "PBXFileReference";
+         path = "DictionaryErrors.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_15" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_16"
+         );
+         name = "Tests";
+         path = "";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_16" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_17",
+            "OBJ_18"
+         );
+         name = "DictionaryCodingTests";
+         path = "Tests/DictionaryCodingTests";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_17" = {
+         isa = "PBXFileReference";
+         path = "DictionaryDecodingTests.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_18" = {
+         isa = "PBXFileReference";
+         path = "DictionaryEncodingTests.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_19" = {
+         isa = "PBXGroup";
+         children = (
+            "DictionaryCoding::DictionaryCoding::Product",
+            "DictionaryCoding::DictionaryCodingTests::Product"
+         );
+         name = "Products";
+         path = "";
+         sourceTree = "BUILT_PRODUCTS_DIR";
+      };
+      "OBJ_2" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_3",
+            "OBJ_4"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_22" = {
+         isa = "PBXFileReference";
+         path = "build";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_23" = {
+         isa = "PBXFileReference";
+         path = "DictionaryCoding.xcworkspace";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_24" = {
+         isa = "PBXFileReference";
+         path = "LICENSE.md";
+         sourceTree = "<group>";
+      };
+      "OBJ_25" = {
+         isa = "PBXFileReference";
+         path = "DictionaryCoding.podspec";
+         sourceTree = "<group>";
+      };
+      "OBJ_26" = {
+         isa = "PBXFileReference";
+         path = "Settings.xcconfig";
+         sourceTree = "<group>";
+      };
+      "OBJ_27" = {
+         isa = "PBXFileReference";
+         path = "DictionaryCoding.xcconfig";
+         sourceTree = "<group>";
+      };
+      "OBJ_28" = {
+         isa = "PBXFileReference";
+         path = "README.md";
+         sourceTree = "<group>";
+      };
+      "OBJ_3" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            CLANG_ENABLE_OBJC_ARC = "YES";
+            COMBINE_HIDPI_IMAGES = "YES";
+            COPY_PHASE_STRIP = "NO";
+            DEBUG_INFORMATION_FORMAT = "dwarf";
+            DYLIB_INSTALL_NAME_BASE = "@rpath";
+            ENABLE_NS_ASSERTIONS = "YES";
+            GCC_OPTIMIZATION_LEVEL = "0";
+            GCC_PREPROCESSOR_DEFINITIONS = (
+               "DEBUG=1",
+               "$(inherited)"
+            );
+            MACOSX_DEPLOYMENT_TARGET = "10.10";
+            ONLY_ACTIVE_ARCH = "YES";
+            OTHER_SWIFT_FLAGS = (
+               "-DXcode"
+            );
+            PRODUCT_NAME = "$(TARGET_NAME)";
+            SDKROOT = "macosx";
+            SUPPORTED_PLATFORMS = (
+               "macosx",
+               "iphoneos",
+               "iphonesimulator",
+               "appletvos",
+               "appletvsimulator",
+               "watchos",
+               "watchsimulator"
+            );
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "SWIFT_PACKAGE",
+               "DEBUG"
+            );
+            SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+            USE_HEADERMAP = "NO";
+         };
+         name = "Debug";
+      };
+      "OBJ_30" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_31",
+            "OBJ_32"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_31" = {
+         isa = "XCBuildConfiguration";
+         baseConfigurationReference = "OBJ_8";
+         buildSettings = {
+            ENABLE_TESTABILITY = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "DictionaryCoding.xcodeproj/DictionaryCoding_Info.plist";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
+            );
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            PRODUCT_BUNDLE_IDENTIFIER = "DictionaryCoding";
+            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+            SKIP_INSTALL = "YES";
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "4.0";
+            TARGET_NAME = "DictionaryCoding";
+         };
+         name = "Debug";
+      };
+      "OBJ_32" = {
+         isa = "XCBuildConfiguration";
+         baseConfigurationReference = "OBJ_8";
+         buildSettings = {
+            ENABLE_TESTABILITY = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "DictionaryCoding.xcodeproj/DictionaryCoding_Info.plist";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
+            );
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            PRODUCT_BUNDLE_IDENTIFIER = "DictionaryCoding";
+            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+            SKIP_INSTALL = "YES";
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "4.0";
+            TARGET_NAME = "DictionaryCoding";
+         };
+         name = "Release";
+      };
+      "OBJ_33" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_34",
+            "OBJ_35",
+            "OBJ_36",
+            "OBJ_37"
+         );
+      };
+      "OBJ_34" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_11";
+      };
+      "OBJ_35" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_12";
+      };
+      "OBJ_36" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_13";
+      };
+      "OBJ_37" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_14";
+      };
+      "OBJ_38" = {
+         isa = "PBXFrameworksBuildPhase";
+         files = (
+         );
+      };
+      "OBJ_4" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            CLANG_ENABLE_OBJC_ARC = "YES";
+            COMBINE_HIDPI_IMAGES = "YES";
+            COPY_PHASE_STRIP = "YES";
+            DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+            DYLIB_INSTALL_NAME_BASE = "@rpath";
+            GCC_OPTIMIZATION_LEVEL = "s";
+            MACOSX_DEPLOYMENT_TARGET = "10.10";
+            OTHER_SWIFT_FLAGS = (
+               "-DXcode"
+            );
+            PRODUCT_NAME = "$(TARGET_NAME)";
+            SDKROOT = "macosx";
+            SUPPORTED_PLATFORMS = (
+               "macosx",
+               "iphoneos",
+               "iphonesimulator",
+               "appletvos",
+               "appletvsimulator",
+               "watchos",
+               "watchsimulator"
+            );
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "SWIFT_PACKAGE"
+            );
+            SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+            USE_HEADERMAP = "NO";
+         };
+         name = "Release";
+      };
+      "OBJ_40" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_41",
+            "OBJ_42"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_41" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            LD = "/usr/bin/true";
+            OTHER_SWIFT_FLAGS = (
+               "-swift-version",
+               "4",
+               "-I",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4",
+               "-target",
+               "x86_64-apple-macosx10.10",
+               "-sdk",
+               "/Applications/Xcode10.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
+            );
+            SWIFT_VERSION = "4.0";
+         };
+         name = "Debug";
+      };
+      "OBJ_42" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            LD = "/usr/bin/true";
+            OTHER_SWIFT_FLAGS = (
+               "-swift-version",
+               "4",
+               "-I",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4",
+               "-target",
+               "x86_64-apple-macosx10.10",
+               "-sdk",
+               "/Applications/Xcode10.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
+            );
+            SWIFT_VERSION = "4.0";
+         };
+         name = "Release";
+      };
+      "OBJ_43" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_44"
+         );
+      };
+      "OBJ_44" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_6";
+      };
+      "OBJ_46" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_47",
+            "OBJ_48"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_47" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+         };
+         name = "Debug";
+      };
+      "OBJ_48" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+         };
+         name = "Release";
+      };
+      "OBJ_49" = {
+         isa = "PBXTargetDependency";
+         target = "DictionaryCoding::DictionaryCodingTests";
+      };
+      "OBJ_5" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_6",
+            "OBJ_7",
+            "OBJ_9",
+            "OBJ_15",
+            "OBJ_19",
+            "OBJ_22",
+            "OBJ_23",
+            "OBJ_24",
+            "OBJ_25",
+            "OBJ_26",
+            "OBJ_27",
+            "OBJ_28"
+         );
+         path = "";
+         sourceTree = "<group>";
+      };
+      "OBJ_51" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_52",
+            "OBJ_53"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_52" = {
+         isa = "XCBuildConfiguration";
+         baseConfigurationReference = "OBJ_8";
+         buildSettings = {
+            CLANG_ENABLE_MODULES = "YES";
+            EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "DictionaryCoding.xcodeproj/DictionaryCodingTests_Info.plist";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "@loader_path/../Frameworks",
+               "@loader_path/Frameworks"
+            );
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "4.0";
+            TARGET_NAME = "DictionaryCodingTests";
+         };
+         name = "Debug";
+      };
+      "OBJ_53" = {
+         isa = "XCBuildConfiguration";
+         baseConfigurationReference = "OBJ_8";
+         buildSettings = {
+            CLANG_ENABLE_MODULES = "YES";
+            EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "DictionaryCoding.xcodeproj/DictionaryCodingTests_Info.plist";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "@loader_path/../Frameworks",
+               "@loader_path/Frameworks"
+            );
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "4.0";
+            TARGET_NAME = "DictionaryCodingTests";
+         };
+         name = "Release";
+      };
+      "OBJ_54" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_55",
+            "OBJ_56"
+         );
+      };
+      "OBJ_55" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_17";
+      };
+      "OBJ_56" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_18";
+      };
+      "OBJ_57" = {
+         isa = "PBXFrameworksBuildPhase";
+         files = (
+            "OBJ_58"
+         );
+      };
+      "OBJ_58" = {
+         isa = "PBXBuildFile";
+         fileRef = "DictionaryCoding::DictionaryCoding::Product";
+      };
+      "OBJ_59" = {
+         isa = "PBXTargetDependency";
+         target = "DictionaryCoding::DictionaryCoding";
+      };
+      "OBJ_6" = {
+         isa = "PBXFileReference";
+         explicitFileType = "sourcecode.swift";
+         path = "Package.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_7" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_8"
+         );
+         name = "Configs";
+         path = "";
+         sourceTree = "<group>";
+      };
+      "OBJ_8" = {
+         isa = "PBXFileReference";
+         path = "DictionaryCoding.xcconfig";
+         sourceTree = "<group>";
+      };
+      "OBJ_9" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_10"
+         );
+         name = "Sources";
+         path = "";
+         sourceTree = "SOURCE_ROOT";
+      };
+   };
+   rootObject = "OBJ_1";
 }
