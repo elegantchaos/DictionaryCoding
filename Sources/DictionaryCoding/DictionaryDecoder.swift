@@ -20,6 +20,13 @@
 
 import Foundation
 
+typealias DictionaryType = NSDictionary
+
+extension NSDictionary {
+    var stringKeys: [String] {
+        return allKeys as! [String]
+    }
+}
 
 //===----------------------------------------------------------------------===//
 // Dictionary Decoder
@@ -288,8 +295,8 @@ fileprivate class _DictionaryDecoder : Decoder {
                                                                     debugDescription: "Cannot get keyed decoding container -- found null value instead."))
         }
         
-        guard let topContainer = self.storage.topContainer as? [String : Any] else {
-            throw DecodingError._typeMismatch(at: self.codingPath, expectation: [String : Any].self, reality: self.storage.topContainer)
+        guard let topContainer = self.storage.topContainer as? DictionaryType else {
+            throw DecodingError._typeMismatch(at: self.codingPath, expectation: DictionaryType.self, reality: self.storage.topContainer)
         }
         
         let container = DictionaryCodingKeyedDecodingContainer<Key>(referencing: self, wrapping: topContainer)
@@ -355,14 +362,14 @@ fileprivate struct DictionaryCodingKeyedDecodingContainer<K : CodingKey> : Keyed
     private let decoder: _DictionaryDecoder
     
     /// A reference to the container we're reading from.
-    private let container: [String : Any]
+    private let container: DictionaryType
     
     /// The path of coding keys taken to get to this point in decoding.
     private(set) public var codingPath: [CodingKey]
     
     // MARK: - Initialization
     /// Initializes `self` by referencing the given decoder and container.
-    fileprivate init(referencing decoder: _DictionaryDecoder, wrapping container: [String : Any]) {
+    fileprivate init(referencing decoder: _DictionaryDecoder, wrapping container: DictionaryType) {
         self.decoder = decoder
         switch decoder.options.keyDecodingStrategy {
         case .useDefaultKeys:
@@ -370,13 +377,18 @@ fileprivate struct DictionaryCodingKeyedDecodingContainer<K : CodingKey> : Keyed
         case .convertFromSnakeCase:
             // Convert the snake case keys in the container to camel case.
             // If we hit a duplicate key after conversion, then we'll use the first one we saw. Effectively an undefined behavior with Dictionary dictionaries.
-            self.container = Dictionary(container.map {
-                key, value in (DictionaryDecoder.KeyDecodingStrategy._convertFromSnakeCase(key), value)
-            }, uniquingKeysWith: { (first, _) in first })
+            let newDict: NSMutableDictionary = NSMutableDictionary(capacity: container.count)
+            for (key, value) in container {
+                newDict[DictionaryDecoder.KeyDecodingStrategy._convertFromSnakeCase(key as! String)] = value
+            }
+            self.container = newDict.copy() as! DictionaryType
         case .custom(let converter):
-            self.container = Dictionary(container.map {
-                key, value in (converter(decoder.codingPath + [DictionaryCodingKey(stringValue: key, intValue: nil)]).stringValue, value)
-            }, uniquingKeysWith: { (first, _) in first })
+            let newDict: NSMutableDictionary = NSMutableDictionary(capacity: container.count)
+            for (key, value) in container {
+                let newKey: String = converter(decoder.codingPath + [DictionaryCodingKey(stringValue: key as! String, intValue: nil)]).stringValue
+                newDict[newKey] = value
+            }
+            self.container = newDict.copy() as! DictionaryType
         }
         self.codingPath = decoder.codingPath
     }
@@ -384,7 +396,7 @@ fileprivate struct DictionaryCodingKeyedDecodingContainer<K : CodingKey> : Keyed
     // MARK: - KeyedDecodingContainerProtocol Methods
     public var allKeys: [Key] {
         #if swift(>=4.1)
-        return self.container.keys.compactMap { Key(stringValue: $0) }
+        return self.container.stringKeys.compactMap { Key(stringValue: $0) }
         #else
         return self.container.keys.flatMap { Key(stringValue: $0) }
         #endif
@@ -462,8 +474,8 @@ fileprivate struct DictionaryCodingKeyedDecodingContainer<K : CodingKey> : Keyed
                                                                   debugDescription: "Cannot get \(KeyedDecodingContainer<NestedKey>.self) -- no value found for key \(_errorDescription(of: key))"))
         }
         
-        guard let dictionary = value as? [String : Any] else {
-            throw DecodingError._typeMismatch(at: self.codingPath, expectation: [String : Any].self, reality: value)
+        guard let dictionary = value as? DictionaryType else {
+            throw DecodingError._typeMismatch(at: self.codingPath, expectation: DictionaryType.self, reality: value)
         }
         
         let container = DictionaryCodingKeyedDecodingContainer<NestedKey>(referencing: self.decoder, wrapping: dictionary)
@@ -806,8 +818,8 @@ fileprivate struct _DictionaryUnkeyedDecodingContainer : UnkeyedDecodingContaine
                                                                     debugDescription: "Cannot get keyed decoding container -- found null value instead."))
         }
         
-        guard let dictionary = value as? [String : Any] else {
-            throw DecodingError._typeMismatch(at: self.codingPath, expectation: [String : Any].self, reality: value)
+        guard let dictionary = value as? DictionaryType else {
+            throw DecodingError._typeMismatch(at: self.codingPath, expectation: DictionaryType.self, reality: value)
         }
         
         self.currentIndex += 1
