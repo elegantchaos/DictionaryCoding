@@ -398,7 +398,7 @@ fileprivate struct DictionaryCodingKeyedDecodingContainer<K : CodingKey> : Keyed
         #if swift(>=4.1)
         return self.container.stringKeys.compactMap { Key(stringValue: $0) }
         #else
-        return self.container.keys.flatMap { Key(stringValue: $0) }
+        return self.container.stringKeys.flatMap { Key(stringValue: $0) }
         #endif
     }
     
