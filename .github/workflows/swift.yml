@@ -11,9 +11,9 @@ jobs:
     - uses: actions/checkout@v1
     - name: List Apps
       run: ls /Applications
+    - name: Swift Version
+      run: swift --version
     - name: Select Xcode
-      run: sudo xcode-select -s /Applications/Xcode_11.2.app
-    - name: Build
-      run: swift build -v
+      run: sudo xcode-select -s /Applications/Xcode_11.2.1.app
     - name: Run tests
-      run: swift test -v
+      run: swift test
