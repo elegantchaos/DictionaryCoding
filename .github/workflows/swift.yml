@@ -10,10 +10,10 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: List Apps
-    - run: ls /Applications
+      run: ls /Applications
     - name: Select Xcode
-    - run: sudo xcode-select -s /Applications/Xcode_11.2.app
+      run: sudo xcode-select -s /Applications/Xcode_11.2.app
     - name: Build
-    - run: swift build -v
+      run: swift build -v
     - name: Run tests
-    - run: swift test -v
+      run: swift test -v
