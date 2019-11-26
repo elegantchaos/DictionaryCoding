@@ -1,10 +1,10 @@
 os: osx
-osx_image: xcode9.2
+osx_image: xcode11.2
 language: swift
 install:
 - swift package update
 script:
-- swift test -Xswiftc -target -Xswiftc x86_64-apple-macosx10.12
+- swift test
 notifications:
   slack:
     secure: TsKpblxP1gz+o1HcJ+2Lw8U3gLfFhWSp6XzJwOOcB9TGfRYVm3kVhy0wzCK8q0V2+Eh8amXhj8oguvbP10GH4Ru+h1bH+p+tp/nfSbh9n7WwC3zArdoNqYxIre7KQ1cuEaoDspRgqKw27/aMBLcbmkzt2b3eAWjpFMnbHNKnIyjz1XNZR2WnQ0IJWvCYVBX/wmQ3d2w7nZ4UTyIh83FwfTYAPQVmlIY7saaTx7/rWit7u8LFGR61cjDgTVbqjJ+vXR+CZqp+KoAPHhhZBchNVv57vH3MjvWYoQ2iPVU3VjvBXTFD700lQBWDdYQ1w7Ew4nzCEr6DHGKO8FvDlna/rW2UDRbQuK5Qn0kPAjMUpTUlJIo+2O7SK6PGRqRCirJ65uOhrJFasWL0kPx4QC8PeUXMVUTYK86Xj17IlwPFIRoe+caqyG30KOCf209Zt0o3FokzUS/FU0Ca9KyejP+US/FF6G9QWc4txlXtTNOV1+jxZWi44AC4G56A1Ik8lCCPjaMH/vz7nbM35oYtkZJ9TPCRXBh1E7j2rQu8Bx6FqKlw1cO7MaxZA5XJF6aOWHWZpNtPkVzluZ3UrILt++QazzTL45Jn/BOlw4F4g6jeZTB26j7Z6VIlyYmoTkywE4IYDovASos4XRFTAGl44TZV3LYz/em4FZKP5OdQ34g34a4=

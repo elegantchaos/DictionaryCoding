@@ -186,7 +186,7 @@ class DictionaryDecodingTests: XCTestCase {
         let decoded2 = try decoder.decode(Test.self, from: encoded2)
         XCTAssertEqual(decoded2.value, uuid)
 
-        let encoded3 : [String:Any] = ["value" : CFUUIDCreateFromString(nil, uuid.uuidString as CFString)]
+        let encoded3 : [String:Any] = ["value" : CFUUIDCreateFromString(nil, uuid.uuidString as CFString)!]
         let decoded3 = try decoder.decode(Test.self, from: encoded3)
         XCTAssertEqual(decoded3.value, uuid)
 
