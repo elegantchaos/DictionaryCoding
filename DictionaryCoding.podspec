@@ -14,7 +14,7 @@ It allows you to take a native swift class or struct that confirms to the Codabl
   s.author           = { 'Sam Deane' => 'sam@elegantchaos.com' }
   s.source           = { :git => 'https://github.com/elegantchaos/DictionaryCoding.git', :tag => s.version.to_s }
 
-  s.swift_version = "4.1"
+  s.swift_version = "5.0"
   s.osx.deployment_target = "10.12"
   s.ios.deployment_target = "10.0"
 
