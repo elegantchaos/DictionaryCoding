@@ -14,8 +14,10 @@ See [this blog post](http://elegantchaos.com/2018/02/21/decoding-dictionaries-in
 
 At the moment this module is best built using the Swift Package Manager with `swift build`.
 
-The unit tests can be run with `swift test -Xswiftc -target -Xswiftc x86_64-apple-macosx10.12`.
+The unit tests can be run with `swift test`.
 
-An Xcode project can be generated with `swift package generate-xcodeproj`.
+An Xcode project can be generated with `swift package generate-xcodeproj  --xcconfig-overrides DictionaryCoding.xcconfig`.
 
-Please file issues (or even better, pull requests) for support for other build systems. 
+A CocoaPods `.podspec` file is included. I don't use CocoaPods myself though, so I can't be entirely sure that I haven't broken something (or forgotten to update something).
+
+Please file issues (or even better, pull requests) for support for other build systems.
