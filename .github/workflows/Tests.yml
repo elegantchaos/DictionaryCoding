@@ -1,0 +1,121 @@
+name: Tests
+
+on: [push, pull_request]
+
+jobs:
+    macOS-iOS-tvOS-watchOS:
+        name: macOS/iOS/tvOS/watchOS
+        runs-on: macOS-latest
+        steps:
+        - name: Checkout
+          uses: actions/checkout@v1
+        - name: Swift Version
+          run: swift --version
+        - name: Make Logs Directory
+          run: mkdir logs
+        - name: Xcode Version
+          run: xcodebuild -version
+        - name: XC Pretty
+          run: sudo gem install xcpretty-travis-formatter
+        - name: Build (macOS/Debug)
+          run: set -o pipefail; xcodebuild clean build -workspace . -scheme DictionaryCoding -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | tee logs/xcodebuild-macOS-build-debug.log | xcpretty
+        - name: Build (macOS/Release)
+          run: set -o pipefail; xcodebuild clean build -workspace . -scheme DictionaryCoding -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | tee logs/xcodebuild-macOS-build-release.log | xcpretty
+        - name: Test (macOS/Debug)
+          run: |
+            GOTPACKAGE=$(xcodebuild -workspace . -list | (grep DictionaryCoding-Package || true))
+            echo "*$GOTPACKAGE*"
+            if [[ $GOTPACKAGE != "" ]]
+            then
+                SCHEME="DictionaryCoding-Package"
+            else
+                SCHEME="DictionaryCoding"
+            fi
+            set -o pipefail
+            xcodebuild test -workspace . -scheme $SCHEME  -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO  | tee logs/xcodebuild-macOS-test-debug.log | xcpretty
+        - name: Test (macOS/Release)
+          run: |
+            GOTPACKAGE=$(xcodebuild -workspace . -list | (grep DictionaryCoding-Package || true))
+            echo "*$GOTPACKAGE*"
+            if [[ $GOTPACKAGE != "" ]]
+            then
+                SCHEME="DictionaryCoding-Package"
+            else
+                SCHEME="DictionaryCoding"
+            fi
+            set -o pipefail
+            xcodebuild test -workspace . -scheme $SCHEME  -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ENABLE_TESTABILITY=YES | tee logs/xcodebuild-macOS-test-release.log | xcpretty
+        - name: Build (iOS/Debug)
+          run: set -o pipefail; xcodebuild clean build -workspace . -scheme DictionaryCoding -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | tee logs/xcodebuild-iOS-build-debug.log | xcpretty
+        - name: Build (iOS/Release)
+          run: set -o pipefail; xcodebuild clean build -workspace . -scheme DictionaryCoding -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | tee logs/xcodebuild-iOS-build-release.log | xcpretty
+        - name: Test (iOS/Debug)
+          run: |
+            GOTPACKAGE=$(xcodebuild -workspace . -list | (grep DictionaryCoding-Package || true))
+            echo "*$GOTPACKAGE*"
+            if [[ $GOTPACKAGE != "" ]]
+            then
+                SCHEME="DictionaryCoding-Package"
+            else
+                SCHEME="DictionaryCoding"
+            fi
+            set -o pipefail
+            xcodebuild test -workspace . -scheme $SCHEME -destination "name=iPhone 11" -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO  | tee logs/xcodebuild-iOS-test-debug.log | xcpretty
+        - name: Test (iOS/Release)
+          run: |
+            GOTPACKAGE=$(xcodebuild -workspace . -list | (grep DictionaryCoding-Package || true))
+            echo "*$GOTPACKAGE*"
+            if [[ $GOTPACKAGE != "" ]]
+            then
+                SCHEME="DictionaryCoding-Package"
+            else
+                SCHEME="DictionaryCoding"
+            fi
+            set -o pipefail
+            xcodebuild test -workspace . -scheme $SCHEME -destination "name=iPhone 11" -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ENABLE_TESTABILITY=YES | tee logs/xcodebuild-iOS-test-release.log | xcpretty
+        - name: Build (tvOS/Debug)
+          run: set -o pipefail; xcodebuild clean build -workspace . -scheme DictionaryCoding -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | tee logs/xcodebuild-tvOS-build-debug.log | xcpretty
+        - name: Build (tvOS/Release)
+          run: set -o pipefail; xcodebuild clean build -workspace . -scheme DictionaryCoding -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | tee logs/xcodebuild-tvOS-build-release.log | xcpretty
+        - name: Test (tvOS/Debug)
+          run: |
+            GOTPACKAGE=$(xcodebuild -workspace . -list | (grep DictionaryCoding-Package || true))
+            echo "*$GOTPACKAGE*"
+            if [[ $GOTPACKAGE != "" ]]
+            then
+                SCHEME="DictionaryCoding-Package"
+            else
+                SCHEME="DictionaryCoding"
+            fi
+            set -o pipefail
+            xcodebuild test -workspace . -scheme $SCHEME -destination "name=Apple TV" -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO  | tee logs/xcodebuild-tvOS-test-debug.log | xcpretty
+        - name: Test (tvOS/Release)
+          run: |
+            GOTPACKAGE=$(xcodebuild -workspace . -list | (grep DictionaryCoding-Package || true))
+            echo "*$GOTPACKAGE*"
+            if [[ $GOTPACKAGE != "" ]]
+            then
+                SCHEME="DictionaryCoding-Package"
+            else
+                SCHEME="DictionaryCoding"
+            fi
+            set -o pipefail
+            xcodebuild test -workspace . -scheme $SCHEME -destination "name=Apple TV" -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ENABLE_TESTABILITY=YES | tee logs/xcodebuild-tvOS-test-release.log | xcpretty
+        - name: Build (watchOS/Debug)
+          run: set -o pipefail; xcodebuild clean build -workspace . -scheme DictionaryCoding -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | tee logs/xcodebuild-watchOS-build-debug.log | xcpretty
+        - name: Build (watchOS/Release)
+          run: set -o pipefail; xcodebuild clean build -workspace . -scheme DictionaryCoding -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | tee logs/xcodebuild-watchOS-build-release.log | xcpretty
+        - name: Upload Logs
+          uses: actions/upload-artifact@v1
+          with:
+            name: logs
+            path: logs
+        - name: Slack Notification
+          uses: elegantchaos/slatify@master
+          if: always()
+          with:
+            type: ${{ job.status }}
+            job_name: 'macOS/iOS/tvOS/watchOS'
+            mention_if: 'failure'
+            url: ${{ secrets.SLACK_WEBHOOK }}
+
