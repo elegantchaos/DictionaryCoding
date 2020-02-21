@@ -1,3 +1,15 @@
+[![Test results][tests shield]][actions] [![Latest release][release shield]][releases] [![Swift 5.0][swift shield]][swift] ![Platforms: iOS, macOS, tvOS, watchOS, Linux][platforms shield]
+
+[swift]: https://swift.org
+
+[releases]: https://github.com/elegantchaos/DictionaryCoding/releases
+[actions]: https://github.com/elegantchaos/DictionaryCoding/actions
+
+[release shield]: https://img.shields.io/github/v/release/elegantchaos/DictionaryCoding
+[swift shield]: https://img.shields.io/badge/swift-5.0-F05138.svg "Swift 5.0"
+[platforms shield]: https://img.shields.io/badge/platforms-iOS_macOS_tvOS_watchOS_Linux-lightgrey.svg?style=flat "iOS, macOS, tvOS, watchOS, Linux"
+[tests shield]: https://github.com/elegantchaos/DictionaryCoding/workflows/tests/badge.svg
+
 # DictionaryCoding
 
 This is an implementation of Swift's Encoder/Decoder protocols which uses `NSDictionary` as its underlying container mechanism.
