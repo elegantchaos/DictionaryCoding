@@ -1321,7 +1321,9 @@ extension _DictionaryDecoder {
     }
     
     fileprivate func unbox<T : Decodable>(_ value: Any, as type: T.Type) throws -> T? {
-        if type == Date.self || type == NSDate.self {
+		if let value = value as? T {
+			return value
+		} else if type == Date.self || type == NSDate.self {
             return try self.unbox(value, as: Date.self) as? T
         } else if type == Data.self || type == NSData.self {
             return try self.unbox(value, as: Data.self) as? T
