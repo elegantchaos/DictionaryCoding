@@ -1,11 +1,11 @@
 import XCTest
 @testable import DictionaryCoding
 
-struct Pet : Codable {
+struct Pet : Codable, Equatable {
     let name : String
 }
 
-struct Person : Codable {
+struct Person : Codable, Equatable {
     let name : String
     let age : Int
     let pets : [Pet]
