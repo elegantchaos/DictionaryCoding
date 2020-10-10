@@ -1358,3 +1358,12 @@ internal var _iso8601Formatter: ISO8601DateFormatter = {
     formatter.formatOptions = .withInternetDateTime
     return formatter
 }()
+
+
+#if canImport(Combine)
+import Combine
+
+extension DictionaryDecoder: TopLevelDecoder {
+	public typealias Input = [String: Any]
+}
+#endif
