@@ -913,3 +913,11 @@ fileprivate class _DictionaryReferencingEncoder : _DictionaryEncoder {
     }
 }
 
+
+#if canImport(Combine)
+import Combine
+
+extension DictionaryEncoder: TopLevelEncoder {
+	public typealias Output = [String: Any]
+}
+#endif
