@@ -1364,6 +1364,6 @@ internal var _iso8601Formatter: ISO8601DateFormatter = {
 import Combine
 
 extension DictionaryDecoder: TopLevelDecoder {
-	public typealias Input = [String: Any]
+    public typealias Input = [String: Any]
 }
 #endif

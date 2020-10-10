@@ -918,6 +918,6 @@ fileprivate class _DictionaryReferencingEncoder : _DictionaryEncoder {
 import Combine
 
 extension DictionaryEncoder: TopLevelEncoder {
-	public typealias Output = [String: Any]
+    public typealias Output = [String: Any]
 }
 #endif
