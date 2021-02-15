@@ -17,6 +17,7 @@ It allows you to take a native swift class or struct that confirms to the Codabl
   s.swift_version = "5.0"
   s.osx.deployment_target = "10.12"
   s.ios.deployment_target = "10.0"
+  s.tvos.deployment_target = "10.0"
 
   s.source_files = 'Sources/DictionaryCoding/**/*'
 end
