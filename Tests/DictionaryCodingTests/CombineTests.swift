@@ -4,7 +4,7 @@ import XCTest
 @testable import DictionaryCoding
 
 
-@available(iOS 13.0, *)
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, *)
 class CombineTests: XCTestCase {
     let people = [
         Person(name: "Sam", age: 48, pets: [Pet(name: "Morven"), Pet(name: "Rebus")]),
