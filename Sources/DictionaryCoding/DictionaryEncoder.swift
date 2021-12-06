@@ -827,8 +827,8 @@ extension _DictionaryEncoder {
             // Respect Data encoding strategy
             return try self.box((value as! Data))
         } else if T.self == URL.self || T.self == NSURL.self {
-            // Encode URLs as single strings.
-            return self.box((value as! URL).absoluteString)
+            // Encode URLs as NSURLs.
+            return (value as! NSURL)
         } else if T.self == Decimal.self || T.self == NSDecimalNumber.self {
             // DictionarySerialization can natively handle NSDecimalNumber.
             return (value as! NSDecimalNumber)
