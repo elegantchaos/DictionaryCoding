@@ -1240,6 +1240,10 @@ extension _DictionaryDecoder {
     fileprivate func unbox(_ value: Any, as type: Date.Type) throws -> Date? {
         guard !(value is NSNull) else { return nil }
         
+        if let date = value as? Date {
+            return date
+        }
+
         switch self.options.dateDecodingStrategy {
         case .deferredToDate:
             self.storage.push(container: value)
@@ -1284,6 +1288,10 @@ extension _DictionaryDecoder {
     fileprivate func unbox(_ value: Any, as type: Data.Type) throws -> Data? {
         guard !(value is NSNull) else { return nil }
         
+        if let data = value as? Data {
+            return data
+        }
+
         switch self.options.dataDecodingStrategy {
         case .deferredToData:
             self.storage.push(container: value)

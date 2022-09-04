@@ -31,7 +31,10 @@ open class DictionaryEncoder {
 
     /// The strategy to use for encoding `Date` values.
     public enum DateEncodingStrategy {
-        /// Defer to `Date` for choosing an encoding. This is the default strategy.
+        /// Just store `Date` and don't decode to another type. This is the default strategy.
+        case asDate
+
+        /// Defer to `Date` for choosing an encoding.
         case deferredToDate
 
         /// Encode the `Date` as a UNIX timestamp (as a Dictionary number).
@@ -55,10 +58,13 @@ open class DictionaryEncoder {
 
     /// The strategy to use for encoding `Data` values.
     public enum DataEncodingStrategy {
+        /// Just store the `Data` and don't decode to an other type. This is the default strategy.
+        case asData
+
         /// Defer to `Data` for choosing an encoding.
         case deferredToData
 
-        /// Encoded the `Data` as a Base64-encoded string. This is the default strategy.
+        /// Encoded the `Data` as a Base64-encoded string.
         case base64
 
         /// Encode the `Data` as a custom value encoded by the given closure.
@@ -152,11 +158,11 @@ open class DictionaryEncoder {
         }
     }
 
-    /// The strategy to use in encoding dates. Defaults to `.deferredToDate`.
-    open var dateEncodingStrategy: DateEncodingStrategy = .deferredToDate
+    /// The strategy to use in encoding dates. Defaults to `.asDate`.
+    open var dateEncodingStrategy: DateEncodingStrategy = .asDate
 
-    /// The strategy to use in encoding binary data. Defaults to `.base64`.
-    open var dataEncodingStrategy: DataEncodingStrategy = .base64
+    /// The strategy to use in encoding binary data. Defaults to `.asData`.
+    open var dataEncodingStrategy: DataEncodingStrategy = .asData
 
     /// The strategy to use in encoding non-conforming numbers. Defaults to `.throw`.
     open var nonConformingFloatEncodingStrategy: NonConformingFloatEncodingStrategy = .throw
@@ -712,6 +718,9 @@ extension _DictionaryEncoder {
 
     fileprivate func box(_ date: Date) throws -> NSObject {
         switch self.options.dateEncodingStrategy {
+        case .asDate:
+            return date as NSDate
+
         case .deferredToDate:
             // Must be called with a surrounding with(pushedKey:) call.
             // Dates encode as single-value objects; this can't both throw and push a container, so no need to catch the error.
@@ -759,6 +768,9 @@ extension _DictionaryEncoder {
 
     fileprivate func box(_ data: Data) throws -> NSObject {
         switch self.options.dataEncodingStrategy {
+        case .asData:
+            return data as NSData
+
         case .deferredToData:
             // Must be called with a surrounding with(pushedKey:) call.
             let depth = self.storage.count
@@ -815,8 +827,8 @@ extension _DictionaryEncoder {
             // Respect Data encoding strategy
             return try self.box((value as! Data))
         } else if T.self == URL.self || T.self == NSURL.self {
-            // Encode URLs as single strings.
-            return self.box((value as! URL).absoluteString)
+            // Encode URLs as NSURLs.
+            return (value as! NSURL)
         } else if T.self == Decimal.self || T.self == NSDecimalNumber.self {
             // DictionarySerialization can natively handle NSDecimalNumber.
             return (value as! NSDecimalNumber)
